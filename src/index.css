@@ -1,5 +1,13 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 16px;
   font-family: sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home {
+  text-align: center;
 }

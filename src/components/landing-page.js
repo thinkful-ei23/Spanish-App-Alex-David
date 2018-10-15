@@ -12,7 +12,7 @@ export function LandingPage(props) {
 
     return (
         <div className="home">
-            <h2>Welcome to Foo App</h2>
+            <p>This app is meant to help you learn Spanish. It uses the spaced repetition technique to help you retain what you have learned.</p>
             <LoginForm />
             <Link to="/register">Register</Link>
         </div>

@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 
-import LoginForm from './login-form';
-
 export function LandingPage(props) {
     // If we are logged in redirect straight to the user's dashboard
     if (props.loggedIn) {
@@ -13,8 +11,8 @@ export function LandingPage(props) {
     return (
         <div className="home">
             <p>This app is meant to help you learn Spanish. It uses the spaced repetition technique to help you retain what you have learned.</p>
-            <LoginForm />
-            <Link to="/register">Register</Link>
+            <Link className="block" to="/login">Login</Link>
+            <Link className="block" to="/register">Register</Link>
         </div>
     );
 }

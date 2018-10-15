@@ -1,7 +1,45 @@
+:root {
+  --sonic-dark-silver: #191919;
+  --sonic-silver: #767676;
+  --phillipine-silver: #b4b4b4;
+  --spanish-viridian: #007e5c;
+  --spanish-yellow: #f9b613;
+  --spanish-light-yellow: #fbca55;
+}
 body {
+  background-color: var(--spanish-yellow);
   margin: 0;
   padding: 16px;
   font-family: sans-serif;
+}
+h1 {
+  color: var(--sonic-dark-silver);
+}
+a {
+  margin: 16px 0;
+}
+button {
+  background-color: var(--phillipine-silver);
+  border: 2px solid var(--spanish-viridian);
+  border-radius: 4px;
+  color: var(--sonic-dark-silver);
+  height: 40px;
+  font-size: 1.5rem;
+  padding: 0;
+  text-decoration: none;
+  width: 100%;
+}
+label {
+  color: var(--sonic-dark-silver);
+  font-size: 1.5rem;
+}
+input {
+  background-color: var(--spanish-light-yellow);
+  border: 1px solid var(--spanish-viridian);
+  border-radius: 4px;
+  color: var(--sonic-dark-silver);
+  font-size: 1.5rem;
+  padding: 8px 4px;
 }
 .app {
   display: flex;
@@ -10,4 +48,10 @@ body {
 }
 .home {
   text-align: center;
+}
+.block {
+  display: block;
+}
+.form-input {
+  margin: 5px 0;
 }

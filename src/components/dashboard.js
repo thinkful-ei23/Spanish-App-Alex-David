@@ -4,27 +4,20 @@ import requiresLogin from './requires-login';
 import {fetchProtectedData} from '../actions/protected-data';
 
 export class Dashboard extends React.Component {
-
     componentDidMount() {
         this.props.dispatch(fetchProtectedData());
     }
 
     render() {
-        if(this.props.protectedData) {
-            console.log('this.props: ', this.props);
-            const first = this.props.protectedData.slice(0,1);
-            console.log('first: ', first);
-            console.log('first[0]: ', first[0]);
-            // console.log('first.spanish: ', first[0].spanish);
+        if(!this.props.protectedData || !this.props.protectedData.length) {
+            return <div>Loading...</div>
         }
-        const first = this.props.protectedData.slice(0,1);
-
 
         return (
             <div className="dashboard">
                 <div className="dashboard-name">Hello {this.props.name}</div>
                 <div className="dashboard-protected-data">
-                    {/* Protected data: {first.spanish} */}
+                    Protected data: {this.props.protectedData[0].spanish}
                 </div>
             </div>
         );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { required, nonEmpty } from '../validators';
-import { userGuess } from '../actions/guess';
+import { userGuess, nextQuestion, setNextQuestion } from '../actions/guess';
 
 export class GuessForm extends React.Component {
   state = {
@@ -13,22 +13,13 @@ export class GuessForm extends React.Component {
     const val = this.userGuess.value;
     this.props.dispatch(userGuess(val));
   }
-  // onNext = e => {
-  //   e.preventDefault();
-  //   this.props.dispatch(nextQuestion());
-  // }
+  onNext = e => {
+    e.preventDefault();
+    console.log(true);
+    this.props.dispatch(nextQuestion());
+  }
 
   render() {
-
-    let button;
-    if(this.props.message !== null) {
-        button = <button className="nextQuestion">Next Question</button>
-    } else {
-      button = 
-      <button type="submit" disabled={this.props.pristine || this.props.submitting} >
-        Submit
-      </button>
-    }
 
     let error;
     if (this.props.error) {
@@ -38,20 +29,29 @@ export class GuessForm extends React.Component {
         </div>
       );
     }
-    return(
-      <form
-        className='guess-form'
-        onSubmit={e => this.onSubmit(e)}
-      >
-        {error}
-        <input
-          type="text"
-          ref={input => this.userGuess = input}
-          validate={[required, nonEmpty]}
-          />
-        {button}
-      </form>
-    )
+
+    if(this.props.message !== null) {
+      return(
+        <button className="nextQuestion" type="submit" onClick={e => this.onNext(e)} >Next Question</button>
+      )
+    } else {
+      return(
+        <form
+          className='guess-form'
+          onSubmit={e => this.onSubmit(e)}
+        >
+          {error}
+          <input
+            type="text"
+            ref={input => this.userGuess = input}
+            validate={[required, nonEmpty]}
+            />
+          <button type="submit" disabled={this.props.pristine || this.props.submitting} >
+            Submit
+          </button>
+        </form>
+      )
+    }
   }
 }
 

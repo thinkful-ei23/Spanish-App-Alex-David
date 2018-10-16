@@ -10,9 +10,16 @@ export const userGuessFail = message => ({
   message
 })
 
+export const SET_NEXT_QUESTION = 'SET_NEXT_QUESTION';
+export const setNextQuestion = index => ({
+  type: SET_NEXT_QUESTION,
+  index
+})
+
 export const userGuess = (guess) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  const answer = getState().protectedData.data[0].english;
+  let index = getState().protectedData.index;
+  const answer = getState().protectedData.data[index].english;
   if (guess === answer) {
     let message = 'Well Done! Bien Hecho!'
     dispatch(userGuessSuccess(message))
@@ -20,4 +27,12 @@ export const userGuess = (guess) => (dispatch, getState) => {
     let message = 'Incorrect! Incorrecto!'
     dispatch(userGuessFail(message));
   }
+}
+
+export const nextQuestion = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  let index = getState().protectedData.index;
+  index++
+  dispatch(setNextQuestion(index));
+  
 }

@@ -10,6 +10,9 @@ export class Dashboard extends React.Component {
     }
 
     render() {
+        let index;
+        index = this.props.index;
+        console.log(index);
         if(!this.props.protectedData || !this.props.protectedData.length) {
             return <div>Loading...</div>
         }
@@ -18,7 +21,7 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
                 <div className="dashboard-name">Hello {this.props.name}</div>
                 <div className="dashboard-protected-data">
-                    {this.props.protectedData[0].spanish}
+                    {this.props.protectedData[index].spanish}
                 </div>
                 <UserGuessForm />
                 <div className='message'>
@@ -35,7 +38,8 @@ const mapStateToProps = state => {
         username: state.auth.currentUser.username,
         name: currentUser.name,
         protectedData: state.protectedData.data,
-        message: state.auth.message
+        message: state.auth.message,
+        index: state.protectedData.index
     };
 };
 

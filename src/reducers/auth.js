@@ -7,7 +7,8 @@ import {
 } from '../actions/auth';
 import {
     USER_GUESS_SUCCESS,
-    USER_GUESS_FAIL
+    USER_GUESS_FAIL,
+    SET_NEXT_QUESTION
 } from '../actions/guess';
 
 const initialState = {
@@ -53,6 +54,11 @@ export default function reducer(state = initialState, action) {
             loading: false,
             message: action.message
         });
-    } 
+    } else if (action.type === SET_NEXT_QUESTION) {
+        return Object.assign({}, state, {
+            loading: false,
+            message: null
+        })
+    }
     return state;
 }

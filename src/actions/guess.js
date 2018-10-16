@@ -18,7 +18,6 @@ export const userGuess = (guess) => (dispatch, getState) => {
     dispatch(userGuessSuccess(message))
   } else {
     let message = 'Incorrect! Incorrecto!'
-
     dispatch(userGuessFail(message));
   }
 }

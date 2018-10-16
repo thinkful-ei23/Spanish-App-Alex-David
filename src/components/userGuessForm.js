@@ -11,15 +11,26 @@ export class GuessForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const val = this.userGuess.value;
-    console.log(val);
-    console.log(this.props.protectedData[0].english);
-    console.log((val === this.props.protectedData[0].english));
     this.props.dispatch(userGuess(val));
   }
+  // onNext = e => {
+  //   e.preventDefault();
+  //   this.props.dispatch(nextQuestion());
+  // }
 
   render() {
+
+    let button;
+    if(this.props.message !== null) {
+        button = <button className="nextQuestion">Next Question</button>
+    } else {
+      button = 
+      <button type="submit" disabled={this.props.pristine || this.props.submitting} >
+        Submit
+      </button>
+    }
+
     let error;
-    
     if (this.props.error) {
       error = (
         <div className='form-error' aria-live='polite'>
@@ -38,12 +49,7 @@ export class GuessForm extends React.Component {
           ref={input => this.userGuess = input}
           validate={[required, nonEmpty]}
           />
-        <button 
-          type="submit"
-          disabled={this.props.pristine || this.props.submitting}
-        >
-          Submit
-        </button>
+        {button}
       </form>
     )
   }
@@ -54,7 +60,8 @@ const mapStateToProps = state => {
   return {
       username: state.auth.currentUser.username,
       name: currentUser.name,
-      protectedData: state.protectedData.data
+      protectedData: state.protectedData.data,
+      message: state.auth.message
   };
 };
 

@@ -8,16 +8,10 @@ export class Dashboard extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchProtectedData());
     }
-    
 
     render() {
         if(!this.props.protectedData || !this.props.protectedData.length) {
             return <div>Loading...</div>
-        }
-        if(this.props.message !== null) {
-            console.log('this.props: ', this.props);
-        } else {
-            console.log('this.props: ', this.props);
         }
 
         return (

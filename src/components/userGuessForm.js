@@ -13,6 +13,7 @@ export class GuessForm extends React.Component {
     const val = this.userGuess.value;
     this.props.dispatch(userGuess(val));
   }
+  
   onNext = e => {
     e.preventDefault();
     console.log(true);
@@ -20,7 +21,6 @@ export class GuessForm extends React.Component {
   }
 
   render() {
-
     let error;
     if (this.props.error) {
       error = (

@@ -37,7 +37,8 @@ export class LoginForm extends React.Component {
             type="text"
             name="username"
             id="username"
-            validate={[required, nonEmpty]}
+            validate={[required, nonEmpty]
+            }
           />
           <label htmlFor="password">Password</label>
           <Field
@@ -56,7 +57,12 @@ export class LoginForm extends React.Component {
   }
 }
 
+
 export default reduxForm({
   form: 'login',
+  initialValues: {
+    username: 'ale',
+    password: 'thinkful123'
+  },
   onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
 })(LoginForm);

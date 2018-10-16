@@ -10,11 +10,21 @@ export class Dashboard extends React.Component {
     }
 
     render() {
+        if(this.props.protectedData) {
+            console.log('this.props: ', this.props);
+            const first = this.props.protectedData.slice(0,1);
+            console.log('first: ', first);
+            console.log('first[0]: ', first[0]);
+            // console.log('first.spanish: ', first[0].spanish);
+        }
+        const first = this.props.protectedData.slice(0,1);
+
+
         return (
             <div className="dashboard">
                 <div className="dashboard-name">Hello {this.props.name}</div>
                 <div className="dashboard-protected-data">
-                    Protected data: {this.props.protectedData}
+                    {/* Protected data: {first.spanish} */}
                 </div>
             </div>
         );

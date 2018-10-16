@@ -1,25 +1,25 @@
 import React from 'react';
-import { Field, reduxForm, focus } from 'redux-form';
-// import { postGuess } from '../actions/guess';
+import { connect } from 'react-redux';
 import { required, nonEmpty } from '../validators';
-import Input from './input';
+import { userGuess } from '../actions/guess';
 
 export class GuessForm extends React.Component {
   state = {
     formSubmitted: false
   };
 
-  // onSubmit(guess) {
-  //   return this.props.dispatch(postGuess(guess))
-  //     .then(() => {
-  //       if (!this.props.error) {
-  //         this.setState({formSubmitted: true});
-  //       }
-  //     });
-  // }
+  onSubmit = e => {
+    e.preventDefault();
+    const val = this.userGuess.value;
+    console.log(val);
+    console.log(this.props.protectedData[0].english);
+    console.log((val === this.props.protectedData[0].english));
+    this.props.dispatch(userGuess(val));
+  }
 
   render() {
     let error;
+    
     if (this.props.error) {
       error = (
         <div className='form-error' aria-live='polite'>
@@ -30,16 +30,14 @@ export class GuessForm extends React.Component {
     return(
       <form
         className='guess-form'
-        onSubmit={this.props.handleSubmit(values => this.onsubmit(values))}
+        onSubmit={e => this.onSubmit(e)}
       >
         {error}
-        <Field
-          component={Input}
-          type="string"
-          name="userGuess"
+        <input
+          type="text"
+          ref={input => this.userGuess = input}
           validate={[required, nonEmpty]}
-          >
-        </Field>
+          />
         <button 
           type="submit"
           disabled={this.props.pristine || this.props.submitting}
@@ -51,9 +49,13 @@ export class GuessForm extends React.Component {
   }
 }
 
-const guessForm = reduxForm({
-  form: 'guess',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('guess', Object.keys(errors)[0]))
-})(GuessForm);
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
+      username: state.auth.currentUser.username,
+      name: currentUser.name,
+      protectedData: state.protectedData.data
+  };
+};
 
-export default guessForm
+export default connect(mapStateToProps)(GuessForm)

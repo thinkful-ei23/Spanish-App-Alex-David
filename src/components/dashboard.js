@@ -8,10 +8,16 @@ export class Dashboard extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchProtectedData());
     }
+    
 
     render() {
         if(!this.props.protectedData || !this.props.protectedData.length) {
             return <div>Loading...</div>
+        }
+        if(this.props.message !== null) {
+            console.log('this.props: ', this.props);
+        } else {
+            console.log('this.props: ', this.props);
         }
 
         return (
@@ -21,6 +27,9 @@ export class Dashboard extends React.Component {
                     {this.props.protectedData[0].spanish}
                 </div>
                 <UserGuessForm />
+                <div className='message'>
+                    {this.props.message}
+                </div>
             </div>
         );
     }
@@ -31,7 +40,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.currentUser.username,
         name: currentUser.name,
-        protectedData: state.protectedData.data
+        protectedData: state.protectedData.data,
+        message: state.auth.message
     };
 };
 

@@ -3,13 +3,19 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { login } from '../actions/auth';
 import { required, nonEmpty } from '../validators';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
   }
-
+  componentWillUpdate() {
+    console.log(true);
+    if (this.props.loggedIn) {
+      return <Redirect to="/dashboard" />;
+    }
+  }
+  
   render() {
     let error;
     if (this.props.error) {
@@ -46,7 +52,6 @@ export class LoginForm extends React.Component {
             Log in
           </button>
         </form>
-        <Link to="/">Go Back</Link>
       </React.Fragment>
     );
   }

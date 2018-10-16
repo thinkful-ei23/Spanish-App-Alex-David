@@ -5,7 +5,7 @@ import {Route, withRouter} from 'react-router-dom';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
-import LoginForm from './login-form';
+import LoginForm from './login-page';
 import RegistrationPage from './registration-page';
 import {refreshAuthToken} from '../actions/auth';
 

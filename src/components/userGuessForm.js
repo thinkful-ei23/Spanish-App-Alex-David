@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { connect } from 'react-redux';
-import { postGuess } from '../actions/guess';
+// import { postGuess } from '../actions/guess';
 import { required, nonEmpty } from '../validators';
 import Input from './input';
 
@@ -10,14 +9,14 @@ export class GuessForm extends React.Component {
     formSubmitted: false
   };
 
-  onSubmit(guess) {
-    return this.props.dispatch(postGuess(guess))
-      .then(() => {
-        if (!this.props.error) {
-          this.setState({formSubmitted: true});
-        }
-      });
-  }
+  // onSubmit(guess) {
+  //   return this.props.dispatch(postGuess(guess))
+  //     .then(() => {
+  //       if (!this.props.error) {
+  //         this.setState({formSubmitted: true});
+  //       }
+  //     });
+  // }
 
   render() {
     let error;
@@ -33,25 +32,28 @@ export class GuessForm extends React.Component {
         className='guess-form'
         onSubmit={this.props.handleSubmit(values => this.onsubmit(values))}
       >
-      {error}
-      <label htmlFor="userGuess">User Guess</label>
-      <Field
-        component={Input}
-        type="string"
-        name="userGuess"
-        validate={[required, nonEmpty]}
+        {error}
+        <Field
+          component={Input}
+          type="string"
+          name="userGuess"
+          validate={[required, nonEmpty]}
+          >
+        </Field>
+        <button 
+          type="submit"
+          disabled={this.props.pristine || this.props.submitting}
         >
-      </Field>
-      <button 
-        type="submit"
-        disabled={this.}
-      >
-        Submit
-      </button>
-
+          Submit
+        </button>
       </form>
     )
   }
-
-
 }
+
+const guessForm = reduxForm({
+  form: 'guess',
+  onSubmitFail: (errors, dispatch) => dispatch(focus('guess', Object.keys(errors)[0]))
+})(GuessForm);
+
+export default guessForm

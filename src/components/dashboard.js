@@ -27,6 +27,9 @@ export class Dashboard extends React.Component {
                 <div className='message'>
                     {this.props.message}
                 </div>
+                <div className='progress'>
+                    Amount correct: {this.props.progress}
+                </div>
             </div>
         );
     }
@@ -39,7 +42,8 @@ const mapStateToProps = state => {
         name: currentUser.name,
         protectedData: state.protectedData.data,
         message: state.auth.message,
-        index: state.protectedData.index
+        index: state.protectedData.index,
+        progress: state.auth.correctCount
     };
 };
 

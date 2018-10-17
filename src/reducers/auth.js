@@ -16,7 +16,8 @@ const initialState = {
     currentUser: null,
     loading: false,
     error: null,
-    message: null
+    message: null,
+    correctCount: 0
 };
 
 export default function reducer(state = initialState, action) {
@@ -47,7 +48,8 @@ export default function reducer(state = initialState, action) {
     } else if (action.type === USER_GUESS_SUCCESS) {
         return Object.assign({}, state, {
             loading: false,
-            message: action.message
+            message: action.message,
+            correctCount: action.correctCount
         });
     } else if (action.type === USER_GUESS_FAIL) {
         return Object.assign({}, state, {

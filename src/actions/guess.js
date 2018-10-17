@@ -6,9 +6,10 @@ export const userGuessSuccess = (message, correctCount) => ({
 })
 
 export const USER_GUESS_FAIL = 'USER_GUESS_FAIL';
-export const userGuessFail = message => ({
+export const userGuessFail = (message, answer) => ({
   type: USER_GUESS_FAIL,
-  message
+  message,
+  answer
 })
 
 export const SET_NEXT_QUESTION = 'SET_NEXT_QUESTION';
@@ -28,7 +29,7 @@ export const userGuess = (guess) => (dispatch, getState) => {
     dispatch(userGuessSuccess(message, correctCount));
   } else {
     let message = 'Incorrect! Incorrecto!'
-    dispatch(userGuessFail(message));
+    dispatch(userGuessFail(message, answer));
   }
 }
 

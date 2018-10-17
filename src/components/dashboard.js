@@ -24,12 +24,13 @@ export class Dashboard extends React.Component {
                     {this.props.protectedData[index].spanish}
                 </p>
                 <UserGuessForm />
-                <p className='message'>
+                <div className='message'>
                     {this.props.message}
-                </p>
-                <p className='progress'>
-                    Amount correct: {this.props.progress}
-                </p>
+                </div>
+                <div className='progress'>
+                    <p>Amount correct: {this.props.progress}</p>
+                    <p>Answer: {this.props.answer}</p>
+                </div>
             </main>
         );
     }
@@ -43,7 +44,8 @@ const mapStateToProps = state => {
         protectedData: state.protectedData.data,
         message: state.auth.message,
         index: state.protectedData.index,
-        progress: state.auth.correctCount
+        progress: state.auth.correctCount,
+        answer: state.auth.answer
     };
 };
 

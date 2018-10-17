@@ -37,6 +37,9 @@ body {
     #34ace0,
     #1e9600
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: sans-serif;
   height: 100%;
   margin: 0;

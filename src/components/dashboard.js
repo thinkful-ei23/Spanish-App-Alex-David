@@ -6,14 +6,16 @@ import UserGuessForm from './userGuessForm';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        // if (this.props.wordList === null) {
+            this.props.dispatch(fetchProtectedData());
+        // }
     }
 
     render() {
         let index;
         index = this.props.index;
         console.log(index);
-        if(!this.props.protectedData || !this.props.protectedData.length) {
+        if(!this.props.wordList || !this.props.wordList.length) {
             return <div>Loading...</div>
         }
 
@@ -40,12 +42,13 @@ const mapStateToProps = state => {
     const {currentUser} = state.auth;
     return {
         username: state.auth.currentUser.username,
-        name: currentUser.name,
-        protectedData: state.protectedData.data,
-        message: state.auth.message,
-        index: state.protectedData.index,
+        answer: state.auth.answer,
         progress: state.auth.correctCount,
-        answer: state.auth.answer
+        message: state.auth.message,
+        wordList: state.auth.wordlist,
+        name: currentUser.name,
+        index: state.protectedData.index,
+        protectedData: state.protectedData.data,
     };
 };
 

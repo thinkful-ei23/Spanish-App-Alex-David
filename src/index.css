@@ -22,9 +22,21 @@ html {
   padding: 0;
 }
 body {
-  background: #1E9600;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #FF0000, #FFF200, #34ace0, #1E9600);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #FF0000, #FFF200, #34ace0, #1E9600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  background: #1e9600; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #ff0000,
+    #fff200,
+    #34ace0,
+    #1e9600
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ff0000,
+    #fff200,
+    #34ace0,
+    #1e9600
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: sans-serif;
   height: 100%;
   margin: 0;
@@ -32,7 +44,8 @@ body {
   text-align: center;
   width: 100%;
 }
-#root, main {
+#root,
+main {
   flex: 1;
   /* height: 100%; */
   /* width: 100%; */
@@ -40,7 +53,6 @@ body {
 main {
   display: flex;
   flex-direction: column;
-
 }
 
 h1 {
@@ -59,7 +71,8 @@ a {
   margin: 16px 0;
   text-decoration: none;
 }
-a:hover, a:active {
+a:hover,
+a:active {
   color: var(--spanish-viridian);
 }
 button {
@@ -75,7 +88,8 @@ button {
   text-decoration: none;
   width: 95%;
 }
-button:hover, button:active {
+button:hover,
+button:active {
   background-color: var(--spanish-viridian);
   color: var(--phillipine-silver);
 }
@@ -101,16 +115,14 @@ input {
   margin: 5px 0;
 }
 
-
 @media screen and (min-width: 825px) {
- #root {
-   margin: 0 auto;
-   width: 800px;
- }
- button {
-  display: block;
-  margin: 16px auto; 
-  width: 400px;
- }
-
+  #root {
+    margin: 0 auto;
+    width: 800px;
+  }
+  button {
+    display: block;
+    margin: 16px auto;
+    width: 400px;
+  }
 }

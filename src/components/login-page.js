@@ -9,11 +9,11 @@ export function LoginPage(props) {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div >
-      <h2>Login To The Spanish App</h2>
+    <main className='login-page'>
+      <h2>Login</h2>
       <LoginForm />
-      <Link to="/">Go Back</Link>
-    </div>
+      <Link to="/">Back</Link>
+    </main>
   );
 }
 

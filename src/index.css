@@ -6,10 +6,20 @@
   --spanish-yellow: #f9b613;
   --spanish-light-yellow: #fbca55;
 }
+* {
+  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
 html {
+  box-sizing: border-box;
+  box-sizing: inherit;
   display: flex;
   align-items: center;
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 body {
   background: #1E9600;  /* fallback for old browsers */
@@ -18,16 +28,30 @@ body {
   font-family: sans-serif;
   height: 100%;
   margin: 0;
-  padding: 16px;
+  padding: 0;
   text-align: center;
   width: 100%;
 }
-#root, .app {
-  height: 100%;
-  width: 100%;
+#root, main {
+  flex: 1;
+  /* height: 100%; */
+  /* width: 100%; */
 }
+main {
+  display: flex;
+  flex-direction: column;
+
+}
+
 h1 {
   color: var(--sonic-dark-silver);
+}
+h2 {
+  font-size: 1.3rem;
+}
+p {
+  font-size: 1rem;
+  margin: 1rem;
 }
 a {
   color: var(--sonic-dark-silver);
@@ -42,12 +66,14 @@ button {
   background-color: var(--phillipine-silver);
   border: 2px solid var(--spanish-viridian);
   border-radius: 4px;
+  box-sizing: border-box;
   color: var(--sonic-dark-silver);
   height: 40px;
   font-size: 1.5rem;
   padding: 0;
+  margin: 16px 0;
   text-decoration: none;
-  width: 100%;
+  width: 95%;
 }
 button:hover, button:active {
   background-color: var(--spanish-viridian);
@@ -55,7 +81,7 @@ button:hover, button:active {
 }
 label {
   color: var(--sonic-dark-silver);
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 input {
   background-color: var(--spanish-light-yellow);
@@ -64,11 +90,6 @@ input {
   color: var(--sonic-dark-silver);
   font-size: 1.5rem;
   padding: 8px 4px;
-}
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .home {
   text-align: center;

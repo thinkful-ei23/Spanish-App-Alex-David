@@ -18,19 +18,19 @@ export class Dashboard extends React.Component {
         }
 
         return (
-            <div className="dashboard">
-                <div className="dashboard-name">Hello {this.props.name}</div>
-                <div className="dashboard-protected-data">
+            <main className="dashboard">
+                <p className="dashboard-name">Hello {this.props.name}</p>
+                <p className="dashboard-protected-data">
                     {this.props.protectedData[index].spanish}
-                </div>
+                </p>
                 <UserGuessForm />
-                <div className='message'>
+                <p className='message'>
                     {this.props.message}
-                </div>
-                <div className='progress'>
+                </p>
+                <p className='progress'>
                     Amount correct: {this.props.progress}
-                </div>
-            </div>
+                </p>
+            </main>
         );
     }
 }

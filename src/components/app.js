@@ -41,13 +41,13 @@ export class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
+            <React.Fragment>
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/login" component={LoginForm} />
                 <Route exact path="/register" component={RegistrationPage} />
-            </div>
+            </React.Fragment>
         );
     }
 }

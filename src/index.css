@@ -100,3 +100,17 @@ input {
 .form-input {
   margin: 5px 0;
 }
+
+
+@media screen and (min-width: 825px) {
+ #root {
+   margin: 0 auto;
+   width: 800px;
+ }
+ button {
+  display: block;
+  margin: 16px auto; 
+  width: 400px;
+ }
+
+}

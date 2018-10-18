@@ -80,9 +80,16 @@ export const nextQuestion = () => (dispatch, getState) => {
   nodeJustAnswered.next = swappedQuestion.next;
   swappedQuestion.next = currentHead;
 
+  let correctCount = getState().auth.currentUser.correctCount;
+  let totalGuesses = getState().auth.currentUser.totalGuesses;
+
+  console.log('CORRECT ', correctCount, 'TOTAL ', totalGuesses);
+
   let updatedList = {
     head: newHead,
-    wordList
+    wordList,
+    correctCount,
+    totalGuesses
   };
   console.log(updatedList);
   return fetch(`${API_BASE_URL}/users/${userId}`, {

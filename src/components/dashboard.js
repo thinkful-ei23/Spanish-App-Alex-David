@@ -31,7 +31,6 @@ export class Dashboard extends React.Component {
         <UserGuessForm />
         <div className="message">{this.props.message}</div>
         <p>{this.props.answer}</p>
-        <p>Amount correct: {this.props.correctCount}</p>
         <p>Mastery: {progressPercentage ? progressPercentage : 0}%</p>
       </main>
     );

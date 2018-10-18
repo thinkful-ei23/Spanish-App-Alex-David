@@ -59,9 +59,10 @@ export const userGuess = guess => (dispatch, getState) => {
   return fetch(`${API_BASE_URL}/users/${userId}`, {
     method: 'PATCH',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`
     },
-    body: updatedList
+    body: JSON.stringify(updatedList)
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())

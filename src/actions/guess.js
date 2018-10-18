@@ -42,7 +42,7 @@ export const userGuess = guess => (dispatch, getState) => {
   //    find the location the above question will move to based on mValue = index 2
   let mValue = nodeJustAnswered.mVal;
   //    change currentUser.head = object at index 0's next value = 1
-  if (guess === answer) {
+  if (guess.toLowerCase() === answer.toLowerCase()) {
     mValue *= 2;
     nodeJustAnswered.mVal = mValue;
     correctCount++;

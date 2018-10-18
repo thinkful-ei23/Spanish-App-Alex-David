@@ -48,9 +48,9 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === USER_GUESS_SUCCESS) {
         return Object.assign({}, state, {
-            loading: false,
-            message: action.message,
-            correctCount: action.correctCount
+          loading: false,
+          message: action.message,
+          correctCount: action.correctCount
         });
     } else if (action.type === USER_GUESS_FAIL) {
         return Object.assign({}, state, {
@@ -62,7 +62,10 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: false,
             message: null,
-            answer: null
+            answer: null,
+            currentUser: Object.assign({}, state.currentUser, {
+                head: action.head
+            })
         })
     }
     return state;

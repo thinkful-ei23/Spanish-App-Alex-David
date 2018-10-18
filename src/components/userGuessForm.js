@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { required, nonEmpty } from '../validators';
-import { userGuess, nextQuestion, setNextQuestion } from '../actions/guess';
+import { userGuess, nextQuestion } from '../actions/guess';
 
 export class GuessForm extends React.Component {
   state = {
@@ -17,7 +17,7 @@ export class GuessForm extends React.Component {
   onNext = e => {
     e.preventDefault();
     console.log(true);
-    this.props.dispatch(nextQuestion());
+    this.props.dispatch(nextQuestion(this.props.head));
   }
 
   render() {
@@ -61,7 +61,8 @@ const mapStateToProps = state => {
       username: state.auth.currentUser.username,
       name: currentUser.name,
       protectedData: state.protectedData.data,
-      message: state.auth.message
+      message: state.auth.message,
+      head: state.auth.currentUser.head
   };
 };
 

@@ -42,7 +42,7 @@ const mapStateToProps = state => {
     answer: state.auth.answer,
     progress: state.auth.correctCount,
     message: state.auth.message,
-    wordList: state.auth.wordlist,
+    word: state.auth.currentUser.wordList,
     name: currentUser.name,
     index: state.protectedData.index,
     protectedData: state.protectedData.data.wordList

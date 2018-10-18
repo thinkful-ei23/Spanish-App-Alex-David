@@ -2,17 +2,19 @@ import { API_BASE_URL } from "../config";
 import { normalizeResponseErrors } from "./utils";
 
 export const USER_GUESS_SUCCESS = "USER_GUESS_SUCCESS";
-export const userGuessSuccess = (message, correctCount) => ({
+export const userGuessSuccess = (message, correctCount, totalGuesses) => ({
   type: USER_GUESS_SUCCESS,
   message,
-  correctCount
+  correctCount,
+  totalGuesses
 });
 
 export const USER_GUESS_FAIL = "USER_GUESS_FAIL";
-export const userGuessFail = (message, answer) => ({
+export const userGuessFail = (message, answer, totalGuesses) => ({
   type: USER_GUESS_FAIL,
   message,
-  answer
+  answer,
+  totalGuesses
 });
 
 export const SET_NEXT_QUESTION = "SET_NEXT_QUESTION";
@@ -24,7 +26,20 @@ export const setNextQuestion = head => ({
 export const userGuess = guess => (dispatch, getState) => {
   const user = getState().auth.currentUser;
   const currentHead = user.head;
-  let correctCount = getState().auth.correctCount;
+  let correctCount = getState().auth.currentUser.correctCount;
+  let totalGuesses = getState().auth.currentUser.totalGuesses;
+  if (correctCount === null) {
+    correctCount = 0;
+  }
+  if (totalGuesses === null) {
+    totalGuesses = 0;
+  }
+
+  console.log(correctCount);
+
+  totalGuesses++;
+  console.log(typeof(totalGuesses));
+  console.log(totalGuesses);
   let wordList = getState().protectedData.data.wordList;
   const answer = wordList[currentHead].english;
   //    save the question just answered = object at index 0
@@ -37,12 +52,12 @@ export const userGuess = guess => (dispatch, getState) => {
     nodeJustAnswered.mVal = mValue;
     correctCount++;
     let message = "Well Done! Bien Hecho!";
-    dispatch(userGuessSuccess(message, correctCount));
+    dispatch(userGuessSuccess(message, correctCount, totalGuesses));
   } else {
     mValue = 1;
     nodeJustAnswered.mVal = mValue;
     let message = "Incorrect! Incorrecto!";
-    dispatch(userGuessFail(message, answer));
+    dispatch(userGuessFail(message, answer, totalGuesses));
   }
 };
 

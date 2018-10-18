@@ -13,24 +13,25 @@ export class Dashboard extends React.Component {
 
   render() {
     if (!this.props.protectedData || !this.props.protectedData.length) {
-      console.log(this.props.protectedData);
       return <div>Loading...</div>;
     }
+    let progressPercentage;
+    if (this.props.totalGuesses !== 0) {
+      progressPercentage = Math.floor((this.props.correctCount / this.props.totalGuesses) * 100);
+    }
 
-    return (
-      <main className="dashboard">
+    return <main className="dashboard">
         <p className="dashboard-name">Hello {this.props.name}</p>
         <p className="dashboard-protected-data">
           {this.props.protectedData[this.props.currentHead].spanish}
         </p>
         <UserGuessForm />
         <div className="message">{this.props.message}</div>
-        <div className="progress">
-          <p>Amount correct: {this.props.progress}</p>
-          <p>{this.props.answer}</p>
-        </div>
-      </main>
-    );
+        <p>{this.props.answer}</p>
+        <p>Amount correct: {this.props.correctCount}</p>
+      <p>Mastery: {(progressPercentage) ? progressPercentage : 0}%</p>
+
+      </main>;
   }
 }
 
@@ -40,8 +41,9 @@ const mapStateToProps = state => {
     username: state.auth.currentUser.username,
     currentHead: state.auth.currentUser.head,
     answer: state.auth.answer,
-    progress: state.auth.correctCount,
+    correctCount: state.auth.correctCount,
     message: state.auth.message,
+    totalGuesses: state.auth.totalGuesses,
     word: state.auth.currentUser.wordList,
     name: currentUser.name,
     index: state.protectedData.index,

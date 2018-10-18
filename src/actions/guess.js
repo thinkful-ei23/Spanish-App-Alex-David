@@ -1,99 +1,91 @@
-import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
 export const USER_GUESS_SUCCESS = 'USER_GUESS_SUCCESS';
 export const userGuessSuccess = (message, correctCount) => ({
   type: USER_GUESS_SUCCESS,
   message,
   correctCount
-})
+});
 
 export const USER_GUESS_FAIL = 'USER_GUESS_FAIL';
 export const userGuessFail = (message, answer) => ({
   type: USER_GUESS_FAIL,
   message,
   answer
-})
+});
 
 export const SET_NEXT_QUESTION = 'SET_NEXT_QUESTION';
 export const setNextQuestion = () => ({
   type: SET_NEXT_QUESTION
-})
+});
 
-
-
-
-
-
-export const userGuess = (guess) => (dispatch, getState) => {
+export const userGuess = guess => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   const user = getState().auth.currentUser;
   const userId = user.id;
+  //  save the value of currentUser.head = 0
   const currentHead = user.head;
   let correctCount = getState().auth.correctCount;
   let wordList = getState().protectedData.data.wordList;
+  console.log(wordList);
   const answer = wordList[currentHead].english;
-  let mValue = wordList[currentHead].mVal;
+  //    save the question just answered = object at index 0
   let nodeJustAnswered = wordList[currentHead];
+  //    find the location the above question will move to based on mValue = index 2
+  let mValue = nodeJustAnswered.mVal;
+  //    change currentUser.head = object at index 0's next value = 1
   let newHead = nodeJustAnswered.next;
-
-  function insertAt(nthPosition, itemToInsert) {
-    if (nthPosition < 0) {
-      throw new Error('Position error');
-    }
-    // Find the node which we want to insert after
-    const node = this._findNthElement(nthPosition - 1);
-    const newNode = new _Node(itemToInsert, null);
-    newNode.next = node.next;
-    node.next = newNode;
-  }
-  
-  function _findNthElement(position) {
-  let node = wordList[0]
-  for (let i = 0; i < position; i++) {
-    node = node.next;
-  }
-  return node;
-  }
-
+  //    find question at index 2
+  console.log(newHead);
   if (guess === answer) {
     mValue *= 2;
-    correctCount++
-    let message = 'Well Done! Bien Hecho!'
+    nodeJustAnswered.mVal = mValue;
+    correctCount++;
+  } else {
+    mValue = 1;
+    nodeJustAnswered.mVal = mValue;
+  }
+  let swappedQuestion = wordList[mValue];
+  //    insert object at index 0 to index 2 by changing the next value
+  nodeJustAnswered.next = swappedQuestion.next;
+  swappedQuestion.next = currentHead;
 
-    console.log(mValue);
-    console.log(wordList);
-
-    // mval is now 2
-    // next is 1
-
-
-
-
-
-    return fetch(`${API_BASE_URL}/users/${userId}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      },
-      body: {}
-    })
+  let updatedList = {
+    head: newHead,
+    wordList
+  };
+  console.log(updatedList);
+  return fetch(`${API_BASE_URL}/users/${userId}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    },
+    body: updatedList
+  })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(data => {
-      dispatch(userGuessSuccess(message, correctCount));
+      if (answer === guess) {
+        let message = 'Well Done! Bien Hecho!';
+        dispatch(userGuessSuccess(message, correctCount));
+      } else {
+        let message = 'Incorrect! Incorrecto!';
+        dispatch(userGuessFail(message, answer));
+      }
     })
-
-  } else {
-    mValue = 1;
-    let message = 'Incorrect! Incorrecto!'
-    dispatch(userGuessFail(message, answer));
-  }
-}
+    .then(() => {
+      return fetch(`${API_BASE_URL}/users/${userId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      });
+    });
+};
 
 export const nextQuestion = () => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
+  // const authToken = getState().auth.authToken;
 
   dispatch(setNextQuestion());
-  
-}
+};

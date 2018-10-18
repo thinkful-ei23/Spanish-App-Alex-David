@@ -56,7 +56,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: false,
             message: action.message,
-            answer: action.answer
+            answer: `Answer: ${action.answer}`
         });
     } else if (action.type === SET_NEXT_QUESTION) {
         return Object.assign({}, state, {

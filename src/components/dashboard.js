@@ -27,7 +27,7 @@ export class Dashboard extends React.Component {
         <div className="message">{this.props.message}</div>
         <div className="progress">
           <p>Amount correct: {this.props.progress}</p>
-          <p>Answer: {this.props.answer}</p>
+          <p>{this.props.answer}</p>
         </div>
       </main>
     );

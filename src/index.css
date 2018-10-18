@@ -47,8 +47,13 @@ body {
   text-align: center;
   width: 100%;
 }
-#root,
-main {
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+#root {
   flex: 1;
   /* height: 100%; */
   /* width: 100%; */
@@ -56,6 +61,13 @@ main {
 main {
   display: flex;
   flex-direction: column;
+}
+section {
+  /* background-color: #36ADDC; */
+  background-color: #61bfe4;
+  border: solid 1px black;
+  border-radius: 4px;
+  margin: 0 16px;
 }
 
 h1 {
@@ -96,17 +108,23 @@ button:active {
   background-color: var(--spanish-viridian);
   color: var(--phillipine-silver);
 }
+form {
+  padding: 5px;
+}
 label {
   color: var(--sonic-dark-silver);
+  display: block;
   font-size: 1rem;
 }
 input {
   background-color: var(--spanish-light-yellow);
   border: 1px solid var(--spanish-viridian);
+  box-sizing: border-box;
   border-radius: 4px;
   color: var(--sonic-dark-silver);
   font-size: 1.5rem;
   padding: 8px 4px;
+  width: 100%;
 }
 .home {
   text-align: center;
@@ -116,6 +134,15 @@ input {
 }
 .form-input {
   margin: 5px 0;
+}
+
+#logoutButton {
+  margin-right: 16px;
+  padding: 0 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }
 
 @media screen and (min-width: 500px) {
@@ -128,4 +155,16 @@ input {
     margin: 16px auto;
     width: 400px;
   }
+
+  input {
+
+
+  font-size: 1.5rem;
+  padding: 8px 4px;
+  width: 400px;
+}
+
+
+
+
 }

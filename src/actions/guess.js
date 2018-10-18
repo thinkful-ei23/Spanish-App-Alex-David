@@ -1,7 +1,7 @@
-import { API_BASE_URL } from "../config";
-import { normalizeResponseErrors } from "./utils";
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
-export const USER_GUESS_SUCCESS = "USER_GUESS_SUCCESS";
+export const USER_GUESS_SUCCESS = 'USER_GUESS_SUCCESS';
 export const userGuessSuccess = (message, correctCount, totalGuesses) => ({
   type: USER_GUESS_SUCCESS,
   message,
@@ -9,7 +9,7 @@ export const userGuessSuccess = (message, correctCount, totalGuesses) => ({
   totalGuesses
 });
 
-export const USER_GUESS_FAIL = "USER_GUESS_FAIL";
+export const USER_GUESS_FAIL = 'USER_GUESS_FAIL';
 export const userGuessFail = (message, answer, totalGuesses) => ({
   type: USER_GUESS_FAIL,
   message,
@@ -17,7 +17,7 @@ export const userGuessFail = (message, answer, totalGuesses) => ({
   totalGuesses
 });
 
-export const SET_NEXT_QUESTION = "SET_NEXT_QUESTION";
+export const SET_NEXT_QUESTION = 'SET_NEXT_QUESTION';
 export const setNextQuestion = head => ({
   type: SET_NEXT_QUESTION,
   head
@@ -28,18 +28,13 @@ export const userGuess = guess => (dispatch, getState) => {
   const currentHead = user.head;
   let correctCount = getState().auth.currentUser.correctCount;
   let totalGuesses = getState().auth.currentUser.totalGuesses;
-  if (correctCount === null) {
+  if (correctCount === undefined) {
     correctCount = 0;
   }
-  if (totalGuesses === null) {
+  if (totalGuesses === undefined) {
     totalGuesses = 0;
   }
-
-  console.log(correctCount);
-
   totalGuesses++;
-  console.log(typeof(totalGuesses));
-  console.log(totalGuesses);
   let wordList = getState().protectedData.data.wordList;
   const answer = wordList[currentHead].english;
   //    save the question just answered = object at index 0
@@ -51,12 +46,12 @@ export const userGuess = guess => (dispatch, getState) => {
     mValue *= 2;
     nodeJustAnswered.mVal = mValue;
     correctCount++;
-    let message = "Well Done! Bien Hecho!";
+    let message = 'Well Done! Bien Hecho!';
     dispatch(userGuessSuccess(message, correctCount, totalGuesses));
   } else {
     mValue = 1;
     nodeJustAnswered.mVal = mValue;
-    let message = "Incorrect! Incorrecto!";
+    let message = 'Incorrect! Incorrecto!';
     dispatch(userGuessFail(message, answer, totalGuesses));
   }
 };
@@ -74,6 +69,9 @@ export const nextQuestion = () => (dispatch, getState) => {
   //    find the location the above question will move to based on mValue = index 2
   let mValue = nodeJustAnswered.mVal;
   //    change currentUser.head = object at index 0's next value = 1
+  if (mValue > wordList.length) {
+    mValue = wordList.length - 1;
+  }
   let newHead = nodeJustAnswered.next;
   //    find question at index 2
 
@@ -88,9 +86,9 @@ export const nextQuestion = () => (dispatch, getState) => {
   };
   console.log(updatedList);
   return fetch(`${API_BASE_URL}/users/${userId}`, {
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`
     },
     body: JSON.stringify(updatedList)
@@ -99,7 +97,7 @@ export const nextQuestion = () => (dispatch, getState) => {
     .then(res => res.json())
     .then(() => {
       return fetch(`${API_BASE_URL}/users/${userId}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${authToken}`
         }

@@ -4,12 +4,12 @@ import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
   AUTH_ERROR
-} from "../actions/auth";
+} from '../actions/auth';
 import {
   USER_GUESS_SUCCESS,
   USER_GUESS_FAIL,
   SET_NEXT_QUESTION
-} from "../actions/guess";
+} from '../actions/guess';
 
 const initialState = {
   authToken: null, // authToken !== null does not mean it has been validated
@@ -17,7 +17,7 @@ const initialState = {
   loading: false,
   error: null,
   message: null,
-  answer: null,
+  answer: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -46,6 +46,7 @@ export default function reducer(state = initialState, action) {
       error: action.error
     });
   } else if (action.type === USER_GUESS_SUCCESS) {
+    console.log('CORRECT', action.correctCount, 'TOTAL', action.totalGuesses);
     return Object.assign({}, state, {
       loading: false,
       message: action.message,

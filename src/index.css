@@ -141,8 +141,16 @@ input {
   margin: 5px 0;
 }
 
-.dashboard .audioButton {
-  width: auto;
+.audioButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+
+}
+.audioButton:hover, .audioButton:active {
+  cursor: pointer;
+  background-color: transparent;
 }
 
 #logoutButton {
@@ -186,4 +194,5 @@ input {
     padding: 0;
     /* width: 400px; */
   }
+
 }

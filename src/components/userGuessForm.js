@@ -62,6 +62,11 @@ export class GuessForm extends React.Component {
     } else {
       return (
         <React.Fragment>
+          <button className="audioButton" onClick={() => this.handleOnClick()}> 
+            <span role="img" aria-label="Play Audio">
+              🔊
+            </span>
+          </button>
           <form className="guess-form" onSubmit={e => this.onSubmit(e)}>
             {error}
             <p id="question" className="dashboard-protected-data">
@@ -82,11 +87,7 @@ export class GuessForm extends React.Component {
               Submit
             </button>
           </form>
-          <button onClick={() => this.handleOnClick()}>
-            <span className="audioButton" role="img" aria-label="Play Audio">
-              🔊
-            </span>
-          </button>
+
         </React.Fragment>
       );
     }

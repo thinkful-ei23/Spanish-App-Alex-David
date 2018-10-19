@@ -42,7 +42,7 @@ export class GuessForm extends React.Component {
       window.responsiveVoice.speak(
         this.props.protectedData[this.props.currentHead].spanish,
         'Spanish Female',
-        { rate: 1.2 }
+        { rate: 1 }
       );
       this.setState({
         speak: false

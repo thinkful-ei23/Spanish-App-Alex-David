@@ -42,7 +42,7 @@ export class GuessForm extends React.Component {
       window.responsiveVoice.speak(
         this.props.protectedData[this.props.currentHead].spanish,
         'Spanish Female',
-        { rate: 0.7 }
+        { rate: 1.2 }
       );
       this.setState({
         speak: false
@@ -62,7 +62,8 @@ export class GuessForm extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <button className="audioButton" onClick={() => this.handleOnClick()}> 
+          <button className="audioButton" onClick={() => this.handleOnClick()}>
+            Play
             <span role="img" aria-label="Play Audio">
               🔊
             </span>
@@ -87,7 +88,6 @@ export class GuessForm extends React.Component {
               Submit
             </button>
           </form>
-
         </React.Fragment>
       );
     }

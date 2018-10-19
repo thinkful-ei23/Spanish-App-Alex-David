@@ -72,12 +72,14 @@ section {
 
 h1 {
   color: var(--sonic-dark-silver);
+  font-size: 1.5rem;
 }
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  margin: 0;
 }
 p {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: 1rem;
 }
 a {
@@ -92,7 +94,7 @@ a:active {
 }
 button {
   background-color: var(--phillipine-silver);
-  border: 2px solid var(--spanish-viridian);
+  border: 1px solid black;
   border-radius: 4px;
   box-sizing: border-box;
   color: var(--sonic-dark-silver);
@@ -114,17 +116,17 @@ form {
 label {
   color: var(--sonic-dark-silver);
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 input {
-  background-color: var(--spanish-light-yellow);
+  background-color: #d5eef8;
   border: 1px solid var(--spanish-viridian);
   box-sizing: border-box;
   border-radius: 4px;
   color: var(--sonic-dark-silver);
   font-size: 1.5rem;
   padding: 8px 4px;
-  width: 100%;
+  width: 95%;
 }
 .home {
   text-align: center;
@@ -144,8 +146,14 @@ input {
   top: 0;
   width: auto;
 }
+#question {
+  background-color: #d5eef8;
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 16px 0;
+}
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 800px) {
   #root {
     margin: 0 auto;
     width: 800px;
@@ -157,14 +165,17 @@ input {
   }
 
   input {
-
-
-  font-size: 1.5rem;
-  padding: 8px 4px;
-  width: 400px;
-}
-
-
-
-
+    font-size: 1.5rem;
+    height: 35px;
+    padding: 8px 4px;
+    width: 250px;
+  }
+  #question {
+    background: none;
+    border: none;
+    display: inline;
+    margin: 1rem;
+    padding: 0;
+    /* width: 400px; */
+  }
 }

@@ -8,6 +8,10 @@ export class GuessForm extends React.Component {
     formSubmitted: false
   };
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   this._input.focus();
+  // }
+
   onSubmit = e => {
     e.preventDefault();
     const val = this.userGuess.value;
@@ -19,6 +23,10 @@ export class GuessForm extends React.Component {
     console.log(true);
     this.props.dispatch(nextQuestion(this.props.head));
   };
+
+  // handleOnClick(e) {
+  //   window.responsiveVoice.speak(e);
+  // }
 
   render() {
     let error;
@@ -44,11 +52,17 @@ export class GuessForm extends React.Component {
       return (
         <form className="guess-form" onSubmit={e => this.onSubmit(e)}>
           {error}
+          {/* <button onClick={this.handleOnClick(this.props.protectedData[this.props.currentHead].spanish)}>Click</button> */}
+          <p id='question' className="dashboard-protected-data">
+            What does {this.props.protectedData[this.props.currentHead].spanish} mean?
+          </p>
           <input
             type="text"
             ref={input => (this.userGuess = input)}
             validate={[required, nonEmpty]}
             aria-label="userGuess"
+            autofocus="true"
+            // ref={c => (this._input = c)}
           />
           <button
             type="submit"
@@ -67,9 +81,10 @@ const mapStateToProps = state => {
   return {
     username: state.auth.currentUser.username,
     name: currentUser.name,
-    protectedData: state.protectedData.data,
+    currentHead: state.auth.currentUser.head,
+    protectedData: state.protectedData.data.wordList,
     message: state.auth.message,
-    head: state.auth.currentUser.head
+    head: state.auth.currentUser.head,
   };
 };
 

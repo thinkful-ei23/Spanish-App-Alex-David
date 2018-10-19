@@ -11,6 +11,8 @@ export class Dashboard extends React.Component {
     // }
   }
 
+
+
   render() {
     if (!this.props.protectedData || !this.props.protectedData.length) {
       return <div>Loading...</div>;
@@ -22,12 +24,11 @@ export class Dashboard extends React.Component {
       );
     }
 
+    
+
     return (
       <main className="dashboard">
-        <p className="dashboard-name">Hello {this.props.name}</p>
-        <p className="dashboard-protected-data">
-          {this.props.protectedData[this.props.currentHead].spanish}
-        </p>
+        <p className="dashboard-name">Hello {this.props.name}!</p>
         <UserGuessForm />
         <div className="message">{this.props.message}</div>
         <p>{this.props.answer}</p>

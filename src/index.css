@@ -134,6 +134,9 @@ input {
 .block {
   display: block;
 }
+.hide {
+  display: none;
+}
 .form-input {
   margin: 5px 0;
 }
@@ -152,6 +155,7 @@ input {
   border-radius: 4px;
   padding: 16px 0;
 }
+
 
 @media screen and (min-width: 800px) {
   #root {

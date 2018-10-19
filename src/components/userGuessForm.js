@@ -28,7 +28,7 @@ export class GuessForm extends React.Component {
     window.responsiveVoice.speak(
       this.props.protectedData[this.props.currentHead].spanish,
       'Spanish Female',
-      { rate: 0.7 }
+      { rate: 1.2 }
     );
   }
 
@@ -76,7 +76,7 @@ export class GuessForm extends React.Component {
               Submit
             </button>
           </form>
-          <button
+          <button className='hide'
             onClick={this.handleOnClick(
               this.props.protectedData[this.props.currentHead].spanish
             )}

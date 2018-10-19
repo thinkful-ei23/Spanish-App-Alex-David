@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { required, nonEmpty } from "../validators";
-import { userGuess, nextQuestion } from "../actions/guess";
+import React from 'react';
+import { connect } from 'react-redux';
+import { required, nonEmpty } from '../validators';
+import { userGuess, nextQuestion } from '../actions/guess';
 
 export class GuessForm extends React.Component {
   state = {
@@ -24,9 +24,13 @@ export class GuessForm extends React.Component {
     this.props.dispatch(nextQuestion(this.props.head));
   };
 
-  // handleOnClick(e) {
-  //   window.responsiveVoice.speak(e);
-  // }
+  handleOnClick(e) {
+    window.responsiveVoice.speak(
+      this.props.protectedData[this.props.currentHead].spanish,
+      'Spanish Female',
+      { rate: 0.7 }
+    );
+  }
 
   render() {
     let error;
@@ -50,27 +54,36 @@ export class GuessForm extends React.Component {
       );
     } else {
       return (
-        <form className="guess-form" onSubmit={e => this.onSubmit(e)}>
-          {error}
-          {/* <button onClick={this.handleOnClick(this.props.protectedData[this.props.currentHead].spanish)}>Click</button> */}
-          <p id='question' className="dashboard-protected-data">
-            What does {this.props.protectedData[this.props.currentHead].spanish} mean?
-          </p>
-          <input
-            type="text"
-            ref={input => (this.userGuess = input)}
-            validate={[required, nonEmpty]}
-            aria-label="userGuess"
-            autofocus="true"
-            // ref={c => (this._input = c)}
-          />
+        <React.Fragment>
+          <form className="guess-form" onSubmit={e => this.onSubmit(e)}>
+            {error}
+            <p id="question" className="dashboard-protected-data">
+              What does{' '}
+              {this.props.protectedData[this.props.currentHead].spanish} mean?
+            </p>
+            <input
+              type="text"
+              ref={input => (this.userGuess = input)}
+              validate={[required, nonEmpty]}
+              aria-label="userGuess"
+              autofocus="true"
+              // ref={c => (this._input = c)}
+            />
+            <button
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Submit
+            </button>
+          </form>
           <button
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
+            onClick={this.handleOnClick(
+              this.props.protectedData[this.props.currentHead].spanish
+            )}
           >
-            Submit
+            Click
           </button>
-        </form>
+        </React.Fragment>
       );
     }
   }
@@ -84,7 +97,7 @@ const mapStateToProps = state => {
     currentHead: state.auth.currentUser.head,
     protectedData: state.protectedData.data.wordList,
     message: state.auth.message,
-    head: state.auth.currentUser.head,
+    head: state.auth.currentUser.head
   };
 };
 

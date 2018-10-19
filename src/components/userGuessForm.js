@@ -5,12 +5,9 @@ import { userGuess, nextQuestion } from '../actions/guess';
 
 export class GuessForm extends React.Component {
   state = {
-    formSubmitted: false
+    formSubmitted: false,
+    speak: false
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   this._input.focus();
-  // }
 
   onSubmit = e => {
     e.preventDefault();
@@ -24,12 +21,11 @@ export class GuessForm extends React.Component {
     this.props.dispatch(nextQuestion(this.props.head));
   };
 
-  handleOnClick(e) {
-    window.responsiveVoice.speak(
-      this.props.protectedData[this.props.currentHead].spanish,
-      'Spanish Female',
-      { rate: 0.7 }
-    );
+  handleOnClick() {
+    console.log('I was clicked!');
+    this.setState({
+      speak: true
+    });
   }
 
   render() {
@@ -40,6 +36,17 @@ export class GuessForm extends React.Component {
           {this.props.error}
         </div>
       );
+    }
+
+    if (this.state.speak) {
+      window.responsiveVoice.speak(
+        this.props.protectedData[this.props.currentHead].spanish,
+        'Spanish Female',
+        { rate: 0.7 }
+      );
+      this.setState({
+        speak: false
+      });
     }
 
     if (this.props.message !== null) {
@@ -66,8 +73,7 @@ export class GuessForm extends React.Component {
               ref={input => (this.userGuess = input)}
               validate={[required, nonEmpty]}
               aria-label="userGuess"
-              autofocus="true"
-              // ref={c => (this._input = c)}
+              autoFocus={true}
             />
             <button
               type="submit"
@@ -76,12 +82,10 @@ export class GuessForm extends React.Component {
               Submit
             </button>
           </form>
-          <button
-            onClick={this.handleOnClick(
-              this.props.protectedData[this.props.currentHead].spanish
-            )}
-          >
-            Click
+          <button onClick={() => this.handleOnClick()}>
+            <span className="audioButton" role="img" aria-label="Play Audio">
+              🔊
+            </span>
           </button>
         </React.Fragment>
       );

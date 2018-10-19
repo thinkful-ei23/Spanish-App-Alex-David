@@ -138,6 +138,10 @@ input {
   margin: 5px 0;
 }
 
+.dashboard .audioButton {
+  width: auto;
+}
+
 #logoutButton {
   margin-right: 16px;
   padding: 0 5px;

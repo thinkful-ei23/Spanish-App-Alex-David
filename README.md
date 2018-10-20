@@ -49,4 +49,4 @@ When presented with a word in Spanish, the user has the option to click on a spe
 ## Project Location
 Both the client and the server are hosted on Heroku as individual projects. The Mongo database is hosted on mLab.
 
-[Spanish App - Server README.md](https://github.com/thinkful-ei23/Spanish-Server-Alex-DavidF/edit/master/README.md)
+[Spanish App - Server README.md](https://github.com/thinkful-ei23/Spanish-Server-Alex-DavidF/blob/master/README.md)

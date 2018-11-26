@@ -1,4 +1,4 @@
-# Spaced Repetition Spanish App
+<h1 align="center">Spaced Repetition Spanish App</h1>
 
 [Demo Spanish App Here](https://spanish-app-client.herokuapp.com/)
 

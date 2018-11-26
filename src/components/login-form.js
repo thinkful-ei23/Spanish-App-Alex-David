@@ -60,9 +60,5 @@ export class LoginForm extends React.Component {
 
 export default reduxForm({
   form: 'login',
-  initialValues: {
-    username: 'ale',
-    password: 'thinkful123'
-  },
   onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
 })(LoginForm);

@@ -1,4 +1,4 @@
-# Spaced Repetition Spanish App
+<h1 align="center">Spaced Repetition Spanish App</h1>
 
 [Demo Spanish App Here](https://spanish-app-client.herokuapp.com/)
 
@@ -50,3 +50,6 @@ When presented with a word in Spanish, the user has the option to click on a spe
 Both the client and the server are hosted on Heroku as individual projects. The Mongo database is hosted on mLab.
 
 [Spanish App - Server README.md](https://github.com/thinkful-ei23/Spanish-Server-Alex-DavidF/blob/master/README.md)
+
+## API Documentation
+[Click to view API documentation](https://documenter.getpostman.com/view/4458639/RzfasXcs)

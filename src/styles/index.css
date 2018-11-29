@@ -149,8 +149,9 @@ input {
 
 }
 .audioButton:hover, .audioButton:active {
-  cursor: pointer;
   background-color: transparent;
+  color: #520000;
+  cursor: pointer;
 }
 
 #logoutButton {

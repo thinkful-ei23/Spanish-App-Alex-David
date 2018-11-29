@@ -14,6 +14,9 @@ export class LoginForm extends React.Component {
       return <Redirect to="/dashboard" />;
     }
   }
+  demoLogin(username, password) {
+    return this.props.dispatch(login(username, password));
+  }
   
   render() {
     let error;
@@ -52,6 +55,8 @@ export class LoginForm extends React.Component {
             Log in
           </button>
         </form>
+        <p>Or click the button below to log into a demo account.</p>
+        <button onClick={() => this.demoLogin('demouser', 'thinkful123')}>Demo Account</button>
       </React.Fragment>
     );
   }
